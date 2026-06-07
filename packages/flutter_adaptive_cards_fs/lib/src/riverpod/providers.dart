@@ -51,6 +51,7 @@ final baselineMapProvider = Provider<Map<String, dynamic>>(
 final adaptiveCardDocumentProvider =
     NotifierProvider<AdaptiveCardDocumentNotifier, AdaptiveCardDocument>(
       AdaptiveCardDocumentNotifier.new,
+      dependencies: [baselineMapProvider],
     );
 
 /// Expanded ShowCard target id for the current [AdaptiveCardElement] scope.
@@ -115,6 +116,7 @@ resolvedElementProvider = Provider.family<Map<String, dynamic>?, String>(
     }
     return merged;
   },
+  dependencies: [adaptiveCardDocumentProvider],
 ).call;
 
 /// Merged baseline + overlay map for the given action id; `null` if unknown.
@@ -140,6 +142,7 @@ resolvedActionProvider = Provider.family<Map<String, dynamic>?, String>(
     }
     return merged;
   },
+  dependencies: [adaptiveCardDocumentProvider],
 ).call;
 
 /// Returns the current theme brightness from [context] (for HostConfig selection).

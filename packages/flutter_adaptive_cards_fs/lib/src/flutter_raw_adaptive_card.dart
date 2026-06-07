@@ -14,6 +14,7 @@ import 'package:flutter_adaptive_cards_fs/src/models/choice.dart';
 import 'package:flutter_adaptive_cards_fs/src/models/data_query.dart';
 import 'package:flutter_adaptive_cards_fs/src/reference_resolver.dart';
 import 'package:flutter_adaptive_cards_fs/src/registry.dart';
+import 'package:flutter_adaptive_cards_fs/src/riverpod/adaptive_card_document_notifier.dart';
 import 'package:flutter_adaptive_cards_fs/src/riverpod/providers.dart';
 import 'package:flutter_adaptive_cards_fs/src/utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -533,6 +534,9 @@ class RawAdaptiveCardState extends State<RawAdaptiveCard> {
         rawAdaptiveCardStateProvider.overrideWithValue(this),
         styleReferenceResolverProvider.overrideWithValue(_resolver),
         baselineMapProvider.overrideWithValue(_baselineMap),
+        adaptiveCardDocumentProvider.overrideWith(
+          AdaptiveCardDocumentNotifier.new,
+        ),
       ],
       child: _AdaptiveCardDocumentLifecycle(
         cardState: this,
